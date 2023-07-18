@@ -1,6 +1,5 @@
 import requests
 
-
 def count_word_at_url(url):
     """
     Это функция для примера
