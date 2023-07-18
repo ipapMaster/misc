@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Тест Java Script</title>
+</head>
+<body>
+    <select id="list" onchange="getValue();">
+        <option value="js">Java Script</option>
+        <option value="py">Python</option>
+    </select>
+<script>
+    function getValue(e)
+    {
+        var selectedValue = e.target.value;
+        if(selectedValue == "py")
+        {
+            // alert('Выбран');
+            window.location.href = 'https://google.com/search?q=python'
+        }
+    }
+    const list = document.querySelector('#list')
+    list.addEventListener('change', function(e) {
+    getValue(e)
+    });
+</script>
+
+</body>
+</html>
