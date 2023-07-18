@@ -1,21 +1,29 @@
-from multiprocessing import Process
+import threading
 
 
-def print_func(continent='Asia'):
-    print(f'Это - {continent}.')
+def print_cube(num):
+    """
+    Вычиcляет куб от заданного числа num
+    """
+    print(f'Куб {num} -> {num * num * num}')
+
+
+def print_square(num):
+    """
+    Вычиcляет квадрат от заданного числа num
+    """
+    print(f'Квадрат {num} -> {num ** 2}')
 
 
 if __name__ == '__main__':
-    names = ['America', 'Europe', 'Africa']
-    procs = []
-    proc = Process(target=print_func)
-    procs.append(proc)
-    proc.start()
+    # создаём два потока
+    thread1 = threading.Thread(target=print_square, args=(10,))
+    thread2 = threading.Thread(target=print_cube, args=(10,))
 
-    for name in names:
-        proc = Process(target=print_func, args=(name,))
-        procs.append(proc)
-        proc.start()
+    thread1.start()  # запуск первого потока
+    thread2.start()  # запуск первого потока
 
-    for proc in procs:
-        proc.join()
+    thread1.join()  # ожидание пока поток 1 завершится
+    thread2.join()  # ожидание пока поток 2 завершится
+
+    print('Процессы завершены')
