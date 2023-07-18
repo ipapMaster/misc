@@ -1,15 +1,21 @@
-import os
-from flask import Flask
+from multiprocessing import Process
 
-app = Flask(__name__)
 
-# start.bat
-# pusk.bat
-@app.route('/')
-def index():
-    return 'Flask приветствует Вас'
+def print_func(continent='Asia'):
+    print(f'Это - {continent}.')
 
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
+    names = ['America', 'Europe', 'Africa']
+    procs = []
+    proc = Process(target=print_func)
+    procs.append(proc)
+    proc.start()
+
+    for name in names:
+        proc = Process(target=print_func, args=(name,))
+        procs.append(proc)
+        proc.start()
+
+    for proc in procs:
+        proc.join()
