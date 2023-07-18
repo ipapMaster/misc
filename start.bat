@@ -1,0 +1,2 @@
+ngrok config add-authtoken 2Sjxvu7u24YsW5tDQZ08byAcDdD_4hDUFuvu5GUNA8ybqwHEF
+pause
