@@ -1,13 +1,24 @@
-"""
-asyncio
-Asyncio – модуль асинхронного программирования,
-который был представлен в Python
-https://habr.com/ru/companies/otus/articles/509328/
-"""
-from lib import count_word_at_url
-from redis import Redis
-from rq import Queue
+import time
+from datetime import datetime
 
 
-q = Queue(connection=Redis())
-job = q.enqueue(count_word_at_url, 'https://quotes.toscrape.com/')
+def dish(num, prepare, wait):
+    """
+    num: номер блюда по порядку
+    prepare: время на подготовку
+    wait: ожидание готовности
+    """
+    print(f'{datetime.now().strftime("%H:%M:%S")} - подготовка к приготовлению блюда {num} - {prepare} мин.')
+    time.sleep(prepare)
+    print(f'Начало приготовления блюда {num} - {datetime.now().strftime("%H:%M:%S")}. Ожидание блюда {num} {wait} мин.')
+    time.sleep(wait)
+    print(f'В {datetime.now().strftime("%H:%M:%S")}. блюдо {num} готово.')
+
+
+t0 = time.time()  # время начало работы
+dish(1, 2, 3)
+dish(2, 5, 10)
+dish(3, 3, 5)
+delta = int(time.time() - t0)  # затраченное время
+print(f'В {datetime.now().strftime("%H:%M:%S")} мы закончили')
+print(f'Затрачено времени - {delta}')
