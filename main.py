@@ -63,6 +63,7 @@ def get_age(message):
 
 @bot.callback_query_handler(func=lambda call: True)
 def callback_worker(call):
+    global age
     """
     call.data - это callback_data, которую
     мы указали при объявлении кнопки
@@ -73,6 +74,7 @@ def callback_worker(call):
                          'Приятно познакомиться')
     elif call.data == "no":
         # инициируем диалог повторно
+        age = 0
         bot.send_message(call.message.chat.id,
                          'Тогда начнём сначала... Как тебя зовут?')
         bot.register_next_step_handler(call.message, get_name)
