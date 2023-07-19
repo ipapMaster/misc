@@ -16,6 +16,7 @@ async def dish(num, prepare, wait):
     await asyncio.sleep(wait)
     print(f'В {datetime.now().strftime("%H:%S")}. блюдо {num} готово.')
 
+
 async def main():
     tasks = [
         asyncio.create_task(dish(1, 2, 3)),
@@ -24,11 +25,12 @@ async def main():
     ]
     await asyncio.gather(*tasks)
 
+
 if __name__ == '__main__':
     t0 = time.time()  # время начало работы
     if os.name == 'nt':
         asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-    asyncio.run(main()) # запустили асинхронное приготовление
+    asyncio.run(main())  # запустили асинхронное приготовление
     delta = int(time.time() - t0)  # затраченное время
     print(f'В {datetime.now().strftime("%H:%S")} мы закончили')
     print(f'Затрачено времени - {delta}')

@@ -1,3 +1,27 @@
 #text {
     font-size: 24pt;
 }
+
+/* Стилизуем кнопку "наверх" */
+#top-btn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    border: none;
+    outline: none;
+    background-color: rgb(245, 245, 245);
+    color: black;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 24pt;
+    font-weight: bold;
+    z-index: 99;
+}
+
+/* Поведение при наведении курсора мыши */
+#top-btn:hover {
+    background-color: #ffc107;
+    color: #dc3355;
+}
